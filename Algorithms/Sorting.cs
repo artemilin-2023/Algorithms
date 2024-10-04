@@ -94,5 +94,23 @@
             QuickSort(array, left, j);
             QuickSort(array, i, right);
         }
+
+        public static IList<T> BubbleSort<T>(this IList<T> array)
+            where T: IComparable
+        {
+            for (int i = 0; i < array.Count - 1; i++) 
+            {
+                for (int j = i + 1; j < array.Count; j++)
+                {
+                    if (array[i].CompareTo(array[j]) > 0)
+                    {
+                        var tmp = array[i];
+                        array[i] = array[j];
+                        array[j] = tmp;
+                    }
+                }
+            }
+            return array;
+        }
     }
 }

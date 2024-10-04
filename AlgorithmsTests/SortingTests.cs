@@ -81,5 +81,13 @@ namespace Algorithms.Tests
             
             CollectionAssert.AreEqual(expected, actual);
         }
+
+        [TestMethod()]
+        public void BubbleSortTest_SmallArray()
+        {
+            var actual = new[] { 1.1f, 3.2f, 2.0f, 5.2f, 4f, 5.1f };
+            actual.MergeSort();
+            CollectionAssert.AreEqual(new[] { 1.1f, 2.0f, 3.2f, 4f, 5.1f, 5.2f }, actual);
+        }
     }
 }

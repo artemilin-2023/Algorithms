@@ -85,7 +85,7 @@
                 while (array[j].CompareTo(pivot) > 0) j--;
                 if (i <= j)
                 {
-                    (array[j], array[i]) = (array[i], array[j]);
+                    Swap(array, i, j);
                     i++;
                     j--;
                 }
@@ -93,6 +93,13 @@
 
             QuickSort(array, left, j);
             QuickSort(array, i, right);
+        }
+
+        private static void Swap<T>(IList<T> array, int i, int j)
+        {
+            var tmp = array[i];
+            array[i] = array[j];
+            array[j] = tmp;
         }
 
         public static IList<T> BubbleSort<T>(this IList<T> array)
@@ -103,9 +110,7 @@
                 for (int j = i + 1; j < array.Count; j++)
                 {
                     if (array[i].CompareTo(array[j]) > 0)
-                    {
-                        (array[j], array[i]) = (array[i], array[j]);
-                    }
+                        Swap(array, i, j);
                 }
             }
             return array;
@@ -128,7 +133,7 @@
 
             for (var i = itemIndex; i > insertIndex; i--)
             {
-                (array[i], array[i - 1]) = (array[i - 1], array[i]);
+                Swap(array, i, i - 1);
             }
         }
 
@@ -171,7 +176,7 @@
                         minIndex = j;
                     }
                 }
-                (array[i], array[minIndex]) = (array[minIndex], array[i]);
+                Swap(array, i, minIndex);
             }
             return array;
         }

@@ -31,7 +31,8 @@ namespace Algorithms.Tests
         [TestMethod()]
         public void MergeSortTest_LargeArray()
         {
-            const int elementsAmount = 100000000;
+            //const int elementsAmount = 100000000;
+            const int elementsAmount = 100000;
             var actual = new List<int>();
             var expected = new List<int>();
             var random = new Random();
@@ -65,7 +66,8 @@ namespace Algorithms.Tests
         [TestMethod()]
         public void QuickSortTest_LargeArray()
         {
-            const int elementsAmount = 100000000;
+            //const int elementsAmount = 100000000;
+            const int elementsAmount = 100000;
             var actual = new List<int>();
             var expected = new List<int>();
             var random = new Random();

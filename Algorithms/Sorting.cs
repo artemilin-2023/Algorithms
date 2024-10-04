@@ -104,9 +104,7 @@
                 {
                     if (array[i].CompareTo(array[j]) > 0)
                     {
-                        var tmp = array[i];
-                        array[i] = array[j];
-                        array[j] = tmp;
+                        (array[j], array[i]) = (array[i], array[j]);
                     }
                 }
             }
@@ -130,9 +128,7 @@
 
             for (var i = itemIndex; i > insertIndex; i--)
             {
-                var tmp = array[i - 1];
-                array[i - 1] = array[i];
-                array[i] = tmp;
+                (array[i], array[i - 1]) = (array[i - 1], array[i]);
             }
         }
 
@@ -158,6 +154,26 @@
                 }
             }
             return rightBorder + 1;
+        }
+
+        public static IList<T> SelectedSort<T>(this IList<T> array)
+            where T : IComparable
+        {
+            for (int i = 0; i < array.Count - 1; i++)
+            {
+                var min = array[i];
+                var minIndex = i;
+                for (int j = i + 1; j < array.Count; j++)
+                {
+                    if (array[j].CompareTo(min) < 0)
+                    {
+                        min = array[j];
+                        minIndex = j;
+                    }
+                }
+                (array[i], array[minIndex]) = (array[minIndex], array[i]);
+            }
+            return array;
         }
     }
 }

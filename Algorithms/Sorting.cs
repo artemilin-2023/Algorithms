@@ -2,6 +2,13 @@
 {
     public static class Sorting
     {
+
+        /// <summary>
+        /// Сортировка слиянием. Упорядычевает элементы массива по возрастанию (неубыванию). Сортировка осуществляется "по месту" (без создания буфферного массива).
+        /// </summary>
+        /// <typeparam name="T">Тип элемена в массиве, реализующий интерфейс <see cref="IComparable"/></typeparam>
+        /// <param name="array">Исходный массив</param>
+        /// <returns>Отсортированный массив. (область памяти та же самая, что и для исходного)</returns>
         public static IList<T> MergeSort<T>(this IList<T> array)
             where T: IComparable
         {
@@ -63,6 +70,12 @@
             }
         }
 
+        /// <summary>
+        /// Быстрая сортировка. Упорядычевает элементы массива по возрастанию (неубыванию). Сортировка осуществляется "по месту" (без создания буфферного массива).
+        /// </summary>
+        /// <typeparam name="T">Тип элемена в массиве, реализующий интерфейс <see cref="IComparable"/></typeparam>
+        /// <param name="array">Исходный массив</param>
+        /// <returns>Отсортированный массив. (область памяти та же самая, что и для исходного)</returns>
         public static IList<T> QuickSort<T>(this IList<T> array)
             where T: IComparable
         {
@@ -102,6 +115,12 @@
             array[j] = tmp;
         }
 
+        /// <summary>
+        /// Пузырьковая сортировка. Упорядычевает элементы массива по возрастанию (неубыванию). Сортировка осуществляется "по месту" (без создания буфферного массива).
+        /// </summary>
+        /// <typeparam name="T">Тип элемена в массиве, реализующий интерфейс <see cref="IComparable"/></typeparam>
+        /// <param name="array">Исходный массив</param>
+        /// <returns>Отсортированный массив. (область памяти та же самая, что и для исходного)</returns>
         public static IList<T> BubbleSort<T>(this IList<T> array)
             where T: IComparable
         {
@@ -116,6 +135,12 @@
             return array;
         }
 
+        /// <summary>
+        /// Сортировка вставкой. Упорядычевает элементы массива по возрастанию (неубыванию). Сортировка осуществляется "по месту" (без создания буфферного массива).
+        /// </summary>
+        /// <typeparam name="T">Тип элемена в массиве, реализующий интерфейс <see cref="IComparable"/></typeparam>
+        /// <param name="array">Исходный массив</param>
+        /// <returns>Отсортированный массив. (область памяти та же самая, что и для исходного)</returns>
         public static IList<T> InsertSort<T>(this IList<T> array)
             where T: IComparable
         {
@@ -161,6 +186,12 @@
             return rightBorder + 1;
         }
 
+        /// <summary>
+        /// Сортировка выбором. Упорядычевает элементы массива по возрастанию (неубыванию). Сортировка осуществляется "по месту" (без создания буфферного массива).
+        /// </summary>
+        /// <typeparam name="T">Тип элемена в массиве, реализующий интерфейс <see cref="IComparable"/></typeparam>
+        /// <param name="array">Исходный массив</param>
+        /// <returns>Отсортированный массив. (область памяти та же самая, что и для исходного)</returns>
         public static IList<T> SelectedSort<T>(this IList<T> array)
             where T : IComparable
         {

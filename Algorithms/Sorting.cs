@@ -144,18 +144,18 @@
             var rightBorder = sortedIndex;
             while (leftBorder <= rightBorder)
             {
-                var midle = (rightBorder + leftBorder) / 2;
-                if (value.CompareTo(array[midle]) == 0)
+                var middle = (rightBorder + leftBorder) / 2;
+                if (value.CompareTo(array[middle]) == 0)
                 {
-                    return midle;
+                    return middle;
                 }
-                else if (value.CompareTo(array[midle]) > 0)
+                else if (value.CompareTo(array[middle]) > 0)
                 {
-                    leftBorder = midle + 1;
+                    leftBorder = middle + 1;
                 }
                 else
                 {
-                    rightBorder = midle - 1;
+                    rightBorder = middle - 1;
                 }
             }
             return rightBorder + 1;

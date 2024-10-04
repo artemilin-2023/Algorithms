@@ -89,5 +89,33 @@ namespace Algorithms.Tests
             actual.MergeSort();
             CollectionAssert.AreEqual(new[] { 1.1f, 2.0f, 3.2f, 4f, 5.1f, 5.2f }, actual);
         }
+
+        [TestMethod()]
+        public void InsertSort_SmallArray()
+        {
+            var actual = new[] { 3, 5, 1, 6, 7, 8, 2, 4 };
+            actual.InsertSort();
+            CollectionAssert.AreEqual(new[] { 1, 2, 3, 4, 5, 6, 7, 8 }, actual);
+        }
+
+        [TestMethod()]
+        public void InsertSort_LargeArray()
+        {
+            const int elementsAmount = 100000;
+            var actual = new List<int>();
+            var expected = new List<int>();
+            var random = new Random();
+            for (int i = 0; i < elementsAmount; i++)
+            {
+                var item = random.Next(i);
+                actual.Add(item);
+                expected.Add(item);
+            }
+
+            Sorting.InsertSort(actual);
+            expected.Sort();
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
     }
 }

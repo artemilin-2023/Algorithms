@@ -112,5 +112,52 @@
             }
             return array;
         }
+
+        public static IList<T> InsertSort<T>(this IList<T> array)
+            where T: IComparable
+        {
+            for (var sortedIndex = 0;  sortedIndex < array.Count - 1; sortedIndex++)
+            {
+                Insert(array, sortedIndex, sortedIndex + 1);
+            }
+            return array;
+        }
+
+        private static void Insert<T>(IList<T> array, int sortedIndex, int itemIndex)
+            where T: IComparable
+        {
+            var insertIndex = GetInsertIndex(array, sortedIndex, array[itemIndex]);
+
+            for (var i = itemIndex; i > insertIndex; i--)
+            {
+                var tmp = array[i - 1];
+                array[i - 1] = array[i];
+                array[i] = tmp;
+            }
+        }
+
+        private static int GetInsertIndex<T>(IList<T> array, int sortedIndex, T value)
+            where T: IComparable
+        {
+            var leftBorder = 0;
+            var rightBorder = sortedIndex;
+            while (leftBorder <= rightBorder)
+            {
+                var midle = (rightBorder + leftBorder) / 2;
+                if (value.CompareTo(array[midle]) == 0)
+                {
+                    return midle;
+                }
+                else if (value.CompareTo(array[midle]) > 0)
+                {
+                    leftBorder = midle + 1;
+                }
+                else
+                {
+                    rightBorder = midle - 1;
+                }
+            }
+            return rightBorder + 1;
+        }
     }
 }

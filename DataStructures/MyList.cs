@@ -52,9 +52,10 @@ namespace DataStructures
         public void CopyTo(T[] array, int arrayIndex)
         {
             ArgumentNullException.ThrowIfNull(array);
+            ArgumentOutOfRangeException.ThrowIfLessThan(arrayIndex, 0);
 
-            var currentNode = GetNodeBy(arrayIndex);
-            for (int i = 0; i < array.Length; i++)
+            var currentNode = head;
+            for (int i = arrayIndex; i < array.Length; i++)
             {
                 if (currentNode == null)
                     break;
@@ -62,6 +63,9 @@ namespace DataStructures
                 array[i] = currentNode.Data!;
                 currentNode = currentNode.Next;
             }
+
+            if (currentNode != null)
+                throw new ArgumentException("Не удалось полностью скопировать исходный список.");
         }
 
         private ListNode<T> GetNodeBy(int index)
@@ -149,6 +153,9 @@ namespace DataStructures
 
         public void RemoveAt(int index)
         {
+            if (index < 0 || index >= Count)
+                throw new ArgumentOutOfRangeException();
+
             if (Count == 1)
             {
                 Clear();

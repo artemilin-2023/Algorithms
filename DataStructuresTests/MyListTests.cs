@@ -52,10 +52,7 @@ namespace DataStructures.Tests
             list.Add(3);
 
             var actual = new int[2];
-            list.CopyTo(actual, 1);
-
-            var expected = new[] { 2, 3 };
-            CollectionAssert.AreEqual(expected, actual);
+            Assert.ThrowsException<ArgumentException>(() =>  list.CopyTo(actual));
         }
 
         [TestMethod()]
@@ -68,7 +65,7 @@ namespace DataStructures.Tests
             var actual = new int[4];
             list.CopyTo(actual, 1);
 
-            var expected = new[] { 2, 3, 0, 0 };
+            var expected = new[] { 0, 1, 2, 3 };
             CollectionAssert.AreEqual(expected, actual);
         }
 

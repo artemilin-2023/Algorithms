@@ -187,5 +187,75 @@ namespace DataStructures.Tests
                 actual.Add(item);
             CollectionAssert.AreEqual(new List<int>(), actual);
         }
+
+        [TestMethod()]
+        public void InsertTest_InsertIntoMiddle()
+        {
+            list.Add(0);
+            list.Add(2);
+
+            list.Insert(1, 1);
+
+            var actual = new int[3];
+            list.CopyTo(actual);
+            CollectionAssert.AreEqual(new[] { 0, 1, 2 }, actual);
+        }
+
+        [TestMethod()]
+        public void InsertTest_InsertIntoHead()
+        {
+            list.Add(1);
+            list.Add(2);
+
+            list.Insert(0, 0);
+
+            var actual = new int[3];
+            list.CopyTo(actual);
+            CollectionAssert.AreEqual(new[] { 0, 1, 2 }, actual);
+        }
+
+        [TestMethod()]
+        public void InsertTest_WrongIndex()
+        {
+            list.Add(1);
+            list.Add(2);
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list.Insert(2, 3));
+        }
+
+        [TestMethod()]
+        public void RemoveTest()
+        {
+            list.Add(0);
+            list.Add(1);
+            list.Add(2);
+            Assert.AreEqual(3, list.Count);
+
+            list.Remove(1);
+            Assert.AreEqual(2, list.Count);
+
+            list.Remove(2);
+            Assert.AreEqual(1, list.Count);
+
+            list.Remove(0);
+            Assert.AreEqual(0, list.Count);
+
+            CollectionAssert.AreEqual(new int[0], list.ToArray());
+        }
+
+        [TestMethod()]
+        public void RemoveAtTest()
+        {
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+
+            list.RemoveAt(1);
+            list.RemoveAt(list.Count - 1);
+            list.RemoveAt(0);
+
+            Assert.AreEqual(0, list.Count);
+            CollectionAssert.AreEqual(new int[0], list.ToArray());
+        }
     }
 }

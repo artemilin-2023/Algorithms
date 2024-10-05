@@ -94,17 +94,82 @@ namespace DataStructures
 
         public void Insert(int index, T item)
         {
-            throw new NotImplementedException();
+            if (index < 0 || index >= Count)
+                throw new ArgumentOutOfRangeException();
+
+            var newNode = new ListNode<T>(null, item);
+            if (index == 0)
+            {
+                newNode.Next = head;
+                head = newNode;
+                return;
+            }
+
+            var previewNode = GetNodeBy(index - 1);
+            var nextNode = previewNode.Next;
+            newNode.Next = nextNode;
+            previewNode.Next = newNode;
         }
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            if (Count <= 0)
+                return false;
+
+            if (Count == 1)
+            {
+                Clear();
+                return true;
+            }
+            else if (head!.Data!.Equals(item))
+            {
+                head = head.Next;
+                Count--;
+                return true;
+            }
+
+            var preview = head;
+            var current = head!.Next;
+            while (current != null)
+            {
+                if (current.Data!.Equals(item))
+                {
+                    if (current.Next == null)
+                        tail = preview;
+                    preview!.Next = current.Next;
+                    Count--;
+                    return true;
+                }
+                preview = current;
+                current = current.Next;
+            }
+
+            return false;
         }
 
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            if (Count == 1)
+            {
+                Clear();
+                return;
+            }
+
+            if (index == 0 && head != null)
+            {
+                head = head.Next;
+                Count--;
+                return;
+            }
+
+            var previewNode = GetNodeBy(index - 1);
+            previewNode.Next = previewNode.Next!.Next;
+            if (index == Count - 1)
+            {
+                tail = previewNode;
+            }
+
+            Count--;
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

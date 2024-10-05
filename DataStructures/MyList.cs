@@ -8,7 +8,7 @@ namespace DataStructures
         public int Count { get; private set; }
         public bool IsReadOnly => false;
 
-        public T this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public T this[int index] { get => GetNodeBy(index).Data!; set => GetNodeBy(index).Data = value; }
 
         private ListNode<T>? head = null;
         private ListNode<T>? tail = null;
@@ -43,35 +43,53 @@ namespace DataStructures
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            return IndexOf(item) != -1;
         }
+
+        public void CopyTo(T[] array)
+            => CopyTo(array, 0);
 
         public void CopyTo(T[] array, int arrayIndex)
         {
+            ArgumentNullException.ThrowIfNull(array);
+
             var currentNode = GetNodeBy(arrayIndex);
             for (int i = 0; i < array.Length; i++)
             {
-                array[i] = currentNode.Data;
+                if (currentNode == null)
+                    break;
+
+                array[i] = currentNode.Data!;
                 currentNode = currentNode.Next;
             }
         }
 
         private ListNode<T> GetNodeBy(int index)
-        {
+        { 
+            if (index < 0 || index >= Count)
+                throw new ArgumentOutOfRangeException(nameof(index));
+
             var currentNode = head;
             for (int i = 0; i < index; i++)
                 currentNode = currentNode!.Next;
             return currentNode!;
         }
 
-        public IEnumerator<T> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerator<T> GetEnumerator() => new ListEnumerator<T>(head!);
 
         public int IndexOf(T item)
         {
-            throw new NotImplementedException();
+            var currentNode = head;
+            int i = 0;
+            while (currentNode != null)
+            {
+                if (currentNode.Data!.Equals(item))
+                    return i;
+
+                currentNode = currentNode.Next;
+                i++;
+            }
+            return -1;
         }
 
         public void Insert(int index, T item)
@@ -89,9 +107,6 @@ namespace DataStructures
             throw new NotImplementedException();
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections;
+using System.Diagnostics;
 
 namespace Algorithms.Tests
 {
@@ -25,7 +26,6 @@ namespace Algorithms.Tests
         [TestMethod()]
         public void MergeSortTest_LargeArray()
         {
-            //const int elementsAmount = 100000000;
             const int elementsAmount = 100000;
             var actual = new List<int>();
             var expected = new List<int>();
@@ -41,6 +41,26 @@ namespace Algorithms.Tests
             expected.Sort();
 
             CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void MergeSortBench()
+        {
+            int elementsAmount = (int)Math.Pow(10, 9);
+            var actual = new List<int>();
+            var random = new Random();
+            for (int i = 0; i < elementsAmount; i++)
+            {
+                var item = random.Next(i);
+                actual.Add(item);
+            }
+
+            var sw = new Stopwatch();
+            sw.Start();
+            Sorting.MergeSort(actual);
+            sw.Stop();
+
+            Trace.WriteLine($"Сортировка {actual.Count} элементов заняла {string.Format("{0}:{1}", Math.Floor(sw.Elapsed.TotalMinutes), sw.Elapsed.ToString("ss\\.ff"))} MM:ss.ms");
         }
 
         [TestMethod()]

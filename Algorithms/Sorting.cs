@@ -69,6 +69,30 @@
                 array[startIndex + i] = mergedArray[i];
             }
         }
+		
+		public static IList<T> MergeSortParallel<T>(this IList<T> array)
+            where T: IComparable
+        {
+            MergeSortParallel(array, 0, array.Count - 1);
+            return array;
+        }
+
+        private static void MergeSortParallel<T>(IList<T> array, int startIndex, int endIndex)
+            where T: IComparable
+        {
+            if (endIndex <= startIndex)
+                return;
+
+            var centerIndex = (startIndex + endIndex) / 2;
+            var tasks = new[]
+            {
+                Task.Run(MergeSort(array, startIndex, centerIndex)),
+                Task.Rum(MergeSort(array, centerIndex + 1, endIndex))
+            };
+            Task.WaitAll(tasks);
+            Merge(array, startIndex, centerIndex, endIndex);
+        }
+
 
         /// <summary>
         /// Быстрая сортировка. Упорядычевает элементы массива по возрастанию (неубыванию). Сортировка осуществляется "по месту" (без создания буфферного массива).

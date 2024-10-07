@@ -44,9 +44,30 @@ namespace Algorithms.Tests
         }
 
         [TestMethod()]
+        public void MergeSortParallelTest_LargeArray()
+        {
+            const int elementsAmount = 100000;
+            var actual = new List<int>();
+            var expected = new List<int>();
+            var random = new Random();
+            for (int i = 0; i < elementsAmount; i++)
+            {
+                var item = random.Next(i);
+                actual.Add(item);
+                expected.Add(item);
+            }
+
+            Sorting.MergeSortParallel(actual);
+            expected.Sort();
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
         public void MergeSortBench()
         {
-            int elementsAmount = (int)Math.Pow(10, 9);
+            int power = 8;
+            int elementsAmount = (int)Math.Pow(10, power);
             var actual = new List<int>();
             var random = new Random();
             for (int i = 0; i < elementsAmount; i++)
@@ -60,7 +81,28 @@ namespace Algorithms.Tests
             Sorting.MergeSort(actual);
             sw.Stop();
 
-            Trace.WriteLine($"Сортировка {actual.Count} элементов заняла {string.Format("{0}:{1}", Math.Floor(sw.Elapsed.TotalMinutes), sw.Elapsed.ToString("ss\\.ff"))} MM:ss.ms");
+            Trace.WriteLine($"Сортировка 10^{power} элементов заняла {string.Format("{0}:{1}", Math.Floor(sw.Elapsed.TotalMinutes), sw.Elapsed.ToString("ss\\.ff"))} MM:ss.ms");
+        }
+
+        [TestMethod()]
+        public void MergeSortParallelBench()
+        {
+            int power = 8;
+            int elementsAmount = (int)Math.Pow(10, power);
+            var actual = new int[elementsAmount];
+            var random = new Random();
+            for (int i = 0; i < elementsAmount; i++)
+            {
+                var item = random.Next(i);
+                actual[i] = item;
+            }
+
+            var sw = new Stopwatch();
+            sw.Start();
+            Sorting.MergeSortParallel(actual);
+            sw.Stop();
+
+            Trace.WriteLine($"Сортировка 10^{power} элементов заняла {string.Format("{0}:{1}", Math.Floor(sw.Elapsed.TotalMinutes), sw.Elapsed.ToString("ss\\.ff"))} MM:ss.ms");
         }
 
         [TestMethod()]

@@ -86,8 +86,8 @@
             var centerIndex = (startIndex + endIndex) / 2;
             var tasks = new[]
             {
-                Task.Run(MergeSort(array, startIndex, centerIndex)),
-                Task.Rum(MergeSort(array, centerIndex + 1, endIndex))
+                Task.Run(() => MergeSortParallel(array, startIndex, centerIndex)),
+                Task.Run(() => MergeSortParallel(array, centerIndex + 1, endIndex))
             };
             Task.WaitAll(tasks);
             Merge(array, startIndex, centerIndex, endIndex);

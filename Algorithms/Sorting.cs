@@ -152,8 +152,8 @@
             {
                 for (int j = i + 1; j < array.Count; j++)
                 {
-                    if (array[i].CompareTo(array[j]) > 0)
-                        Swap(array, i, j);
+                    if (array[j - 1].CompareTo(array[j]) > 0)
+                        Swap(array, j - 1, j);
                 }
             }
             return array;

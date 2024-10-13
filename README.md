@@ -18,6 +18,7 @@
       - [Сравнение алгоритмов сортировки](#сравнение-алгоритмов-сортировки)
       - [Сортировка пузырьком](#сортировка-пузырьком)
       - [Сортировка вставками](#сортировка-вставками)
+      - [Сортировка выбором](#сортировка-выбором)
 
 ## Алгоритмы обработки данных
 
@@ -116,3 +117,23 @@ def insert(array, endSortedPartIndex, itemIndex)
 ```
 
 ![insert sort](./readme-source/Insertion-sort-example-300px.gif)
+
+#### Сортировка выбором
+
+Реализация [тут](https://github.com/artemilin-2023/Algorithms/blob/c9cc8e6247f59298f6057e875037a2928cda9bd8/Algorithms/Sorting.cs#L219)
+
+Принцип очень прост: на каждой итерации берем текущий элемент и меняем его местами с минимальным элементам из множества, правее текущего элемента.
+
+Псевдокод:
+
+``` py
+for i in range(0, array.Count - 1)
+        min_index = i
+        for j in range(i + 1, array.Count)
+            if array[j] < array[min_index]:
+                min_index = j
+        swap(arary[i], array[min_index])
+```
+
+![selection sort](./readme-source/Selection-Sort-Animation.gif)
+![selection sort points](./readme-source/Selection_sort_animation.gif)

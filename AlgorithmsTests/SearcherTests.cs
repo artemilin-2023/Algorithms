@@ -23,14 +23,14 @@ namespace Algorithms.Tests
         public void SentialSearchTest()
         {
             var actual = new List<int>() { 1, 2, 3, 4 };
-            Assert.AreEqual(2, actual.SentialSearch(3));
+            Assert.AreEqual(2, actual.SentinelSearch(3));
         }
 
         [TestMethod()]
         public void SentialSearchTest_ElementDontExist()
         {
             var actual = new List<int>() { 1, 2, 3, 4 };
-            Assert.AreEqual(-1, actual.SentialSearch(5));
+            Assert.AreEqual(-1, actual.SentinelSearch(5));
         }
 
         [TestMethod()]

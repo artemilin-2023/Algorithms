@@ -27,7 +27,7 @@
         /// <param name="array">Массив, в котором будет осуществляться поиск. Может быть неотсортированным.</param>
         /// <param name="target">Искомый элемент.</param>
         /// <returns>Индекс элемента. -1, если искомого элемента нет в массиве.</returns>
-        public static int SentialSearch<T>(this IList<T> array, T target)
+        public static int SentinelSearch<T>(this IList<T> array, T target)
             where T: IEquatable<T>
         {
             var tmp = array[array.Count - 1];

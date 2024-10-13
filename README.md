@@ -1,4 +1,5 @@
-# Алгоритмы и структуры данных ![GitHub Repo stars](https://img.shields.io/github/stars/artemilin-2023/Algorithms?style=social)
+# Алгоритмы и структуры данных ![GitHub Repo stars](https://img.shields.io/github/stars/artemilin-2023/Algorithms)
+
 
 Посчитал репозиторий полезным? Поставь звезду =)
 

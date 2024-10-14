@@ -19,10 +19,11 @@
       - [Сортировка пузырьком](#сортировка-пузырьком)
       - [Сортировка вставками](#сортировка-вставками)
       - [Сортировка выбором](#сортировка-выбором)
+      - [Сортировка слиянием](#сортировка-слиянием)
 
 ## Алгоритмы обработки данных
 
-Я буду рассматривать только алгоритмы *поиска* и *сортировки*, алгоритмы оптимизации оставлю на потом.
+Я буду рассматривать только алгоритмы *поиска* и *сортировки*, алгоритмы *оптимизации* оставлю на потом.
 
 ### Поиск
 
@@ -137,3 +138,51 @@ for i in range(0, array.Count - 1)
 
 ![selection sort](./readme-source/Selection-Sort-Animation.gif)
 ![selection sort points](./readme-source/Selection_sort_animation.gif)
+
+#### Сортировка слиянием
+
+Реализация [тут](https://github.com/artemilin-2023/Algorithms/blob/2d928c6f43eaa0f106418dcab771d8dee2a72036/Algorithms/Sorting.cs#L12)
+
+Идея заключается в объединения отсортированных множеств, это деается очень легко: первый элемент первого множества сравнивается с первым элементом второго множества, меньший из них добавляется в буфферный массив, а указатель добавленного элемента сдвигается вперед. Эти действия повторяются до тех пор, пока не сольются оба множества или одно из них не закончится. В случае, если одно из множеств закончилось раньше, чем другое, то оставшееся множество добавляем в конец буфферного массива.
+
+Алгоритм работает по приципу "разделяй и властвуй": исходное множество делится на две части, каждая из которых так же делится на две части. Когда часть множества состоит всего из одного элемента и делить дальше уже некуда, мы получаем отсортированное множество (множество из одного элемента по умолчанию отсортированно). Затем наступает этап слияния двух уже отсортированных подможеств в одно большей размерности.
+
+Псевдокод:
+
+``` c
+function mergesort(m)
+    var list left, right, result
+    if length(m) ≤ 1
+        return m
+    else
+        middle = length(m) / 2
+        for each x in m up to middle
+            add x to left
+        for each x in m after middle
+            add x to right
+        left = mergesort(left)
+        right = mergesort(right)
+        result = merge(left, right)
+        return result
+    end if
+
+function merge(left,right)
+    var list result
+    while length(left) > 0 and length(right) > 0
+        if first(left) ≤ first(right)
+            append first(left) to result
+            left = rest(left)
+        else
+            append first(right) to result
+            right = rest(right)
+        end if
+    while length(left) > 0 
+        append first(left) to result
+        left = rest(left)
+    while length(right) > 0 
+        append first(right) to result
+        right = rest(right)
+    return result
+```
+
+![merge sort](./readme-source/Merge-sort-example-300px.gif)

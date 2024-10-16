@@ -88,12 +88,13 @@
 
 Псевдокод:
 
-``` C#
-ЦИКЛ ДЛЯ I=0 ДО n-1 ШАГ 1
-   ЦИКЛ ДЛЯ J=I+1 ДО n ШАГ 1
-     ЕСЛИ A[J - 1] > A[j] ТО ОБМЕН A[j - 1], A[j]
-   СЛЕДУЮЩЕЕ j
- СЛЕДУЮЩЕЕ I
+``` c
+function bubble_sort(array)
+    for i from 0 to length(array) - 1 do
+        for j from i + 1 to length(array) do
+            if array[j - 1] > array[j]
+              swap(array[j - 1], array[j])
+            end if
 ```
 
 ![bubble sort](./readme-source/Bubble-sort-example-300px.gif)
@@ -106,15 +107,16 @@
 
 Псевдокод:
 
-``` py
-for sorted in range(0, array.Count - 1)
-    insert(array, sorted, sorted + 1)
+``` c
+function insert_sort(array)
+    for i from 0 to length(array) - 1 do
+        insert(array, i, sorted + 1)
 
-def insert(array, endSortedPartIndex, itemIndex)
+function insert(array, endOfSortedPartIndex, itemIndex)
     // получение индекса вставки может быть реализовано разными способами, например - через бинарный поиск
-    insertToIndex = getInsertToIndex(endSortedPartIndex, array[itemIndex]) 
+    insertToIndex = getInsertToIndex(endSortedPartIndex, array[itemIndex])
 
-    for i in range(itemIndex, insertToIndex, -1)
+    for i from itemIndex to insertToIndex step -1 do
         swap(array[i], array[i - 1])
 ```
 
@@ -128,13 +130,15 @@ def insert(array, endSortedPartIndex, itemIndex)
 
 Псевдокод:
 
-``` py
-for i in range(0, array.Count - 1)
-        min_index = i
-        for j in range(i + 1, array.Count)
-            if array[j] < array[min_index]:
+``` c
+function selection_sort(array)
+    for i from 0 to length(array) - 1 do
+        min_index = I
+        for j from i + 1 to length(array) do
+            if array[j] < array[min_index]
                 min_index = j
-        swap(arary[i], array[min_index])
+            end if
+        swap(array[i], array[min_index])
 ```
 
 ![selection sort](./readme-source/Selection-Sort-Animation.gif)
